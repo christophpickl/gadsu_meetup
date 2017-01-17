@@ -1,0 +1,42 @@
+
+TODO
+* website polishen
+* URL auf meetup seite geben
+
+
+
+>>>>>>>>>>>>>>>> CONTENT <<<<<<<<<<<<<<<<
+
+ABOUT GADSU
+========================================================================
+* shiatsu tool
+	- manage clients, appointments, treatments, diagnosis
+	- protocol PDF generation
+	- google calender integration
+* roadmap
+	- TCM intelligency/software agent, recommender what to do
+	- statistics
+	- doodle integration
+	- invoices/billing (connect to finanzamt)
+
+MOST USED KOTLIN FEATURES
+========================================================================
+* data class
+* extension methods
+* compact functional (map, filter, apply)
+
+SCHMANKERLN
+========================================================================
+
+EXTENSION METHODS for test infrastructure
+------------------------------------------------------------------------
+* unsaved valid instance (in combination with )
+	- requires companion object, even when just empty :(
+
+
+LESSONS LEARNED
+========================================================================
+* common tools for coverage and static code analysis "eher mau" (coverage ok, syntax highlighting ko, checkstyle/pmd?)
+* data classes are restricted in usage
+* the "1-liner challenge": no references, just a = method
+
