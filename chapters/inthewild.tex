@@ -1,0 +1,50 @@
+
+\sektion{In the wild}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullimageCapt{travis}{\href{https://travis-ci.org/christophpickl/gadsu}{travis-ci.org}}{10cm}
+
+\begin{frame}[fragile] \frametitle{Travis} 
+\pause
+\texttt{.travis.yml}:
+
+\begin{lstlisting}
+language: kotlin
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullimageCapt{codecov}{\href{https://codecov.io/gh/christophpickl/gadsu/}{codecov.io}}{10cm}
+
+\begin{frame}[fragile] \frametitle{Codecov} 
+\pause
+Gradle Configuration:
+
+\begin{lstlisting}
+plugins {
+  id 'jacoco'
+  id 'com.github.kt3k.coveralls'
+    version '2.7.1'
+}
+\end{lstlisting}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullimageCapt{versioneye}{\href{https://www.versioneye.com/user/projects/572880644a0faa000b782062}{versioneye.com}}{10cm}
+
+\begin{frame}[fragile] \frametitle{Versioneye} 
+\pause
+Gradle Configuration:
+
+\begin{lstlisting}
+plugins {
+  id "org.standardout.versioneye"
+    version "1.4.0"
+}
+\end{lstlisting}
+\end{frame}
+
+

@@ -18,6 +18,14 @@ ABOUT GADSU
 	- statistics
 	- doodle integration
 	- invoices/billing (connect to finanzamt)
+* toolstack
+	- swing (RIP)
+	- guava
+	- spring jdbc
+	- hsqldb+flyway
+	- jasper
+	- freemarker
+
 
 MOST USED KOTLIN FEATURES
 ========================================================================
@@ -25,8 +33,17 @@ MOST USED KOTLIN FEATURES
 * extension methods
 * compact functional (map, filter, apply)
 
+MINORS
+------------------------------------------------------------------------
+* convert setter methods to property access
+
 SCHMANKERLN
 ========================================================================
+
+* Tool Infrastructure
+	- VersionEye
+	- Coverage (kotlin support)
+* Google APIs (GMail, Calendar)
 
 EXTENSION METHODS for test infrastructure
 ------------------------------------------------------------------------

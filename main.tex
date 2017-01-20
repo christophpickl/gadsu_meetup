@@ -29,7 +29,23 @@
 }
 
 
-\input{chapters/intro_gadsu}
+\frame{\frametitle{Agenda} 
 
+\setbeamercolor{normal text}{fg=gray,bg=}
+\setbeamercolor{alerted text}{fg=black,bg=}
+\usebeamercolor{normal text}
+
+\begin{itemize}
+	\item \alert<+>{Introduction to Gadsu} % the app and a bit theory behind shiatsu, TCM; future features of gadsu
+	\item \alert<+>{Kotlin in the wild} % tooling & infrastructure: gradle, travis, version eye, coverage
+	\item \alert<+>{Code ``\textit{Schmankerln}''} % most practical code snippets/language features; frameworks&libs
+	\item \alert<+>{Lessons Learned} % summarize highlights
+\end{itemize}
+}
+
+\input{chapters/intro_gadsu}
+\input{chapters/inthewild}
+\input{chapters/schmankerln}
+\input{chapters/lessons_learned}
 
 \end{document}
