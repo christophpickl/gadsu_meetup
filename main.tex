@@ -1,5 +1,3 @@
-
-
 %\documentclass{beamer} % animation turned ON
 \documentclass[handout]{beamer} % animation turned OFF
 
@@ -22,7 +20,7 @@
     \noindent\makebox[\linewidth]{\textcolor{kotlinBgBright}{\rule{\paperwidth}{1.4pt}}}
     \vspace{2.0pt} \\
     \textbf{\large{\textcolor{white}{Christoph Pickl}}} \\
-    \textbf{\footnotesize{\textcolor{white}{Vienna, Austria -- January 31st, 2017}}}
+    \textbf{\scriptsize{\textcolor{white}{Kotlin Vienna Meetup -- 2017-01-31}}}
   }
 }
 }
@@ -35,17 +33,18 @@
 \setbeamercolor{alerted text}{fg=black,bg=}
 \usebeamercolor{normal text}
 
-\begin{itemize}
+\begin{enumerate}
 	\item \alert<+>{Introduction to Gadsu} % the app and a bit theory behind shiatsu, TCM; future features of gadsu
 	\item \alert<+>{Kotlin in the wild} % tooling & infrastructure: gradle, travis, version eye, coverage
 	\item \alert<+>{Code ``\textit{Schmankerln}''} % most practical code snippets/language features; frameworks&libs
 	\item \alert<+>{Lessons Learned} % summarize highlights
-\end{itemize}
+\end{enumerate}
 }
 
-\input{chapters/intro_gadsu}
-\input{chapters/inthewild}
+%\input{chapters/intro_gadsu}
+%\input{chapters/inthewild}
 \input{chapters/schmankerln}
 \input{chapters/lessons_learned}
+%\input{chapters/epilog}
 
 \end{document}

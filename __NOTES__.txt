@@ -1,4 +1,70 @@
 
+remind@me: mockito-kotlin, hamkrest
+
+===> mehr fokus auf kotlin spezifika (weniger projekt generell krimskrams)
+
+* intellij bookmarks verwenden fuer live herzeigen
+
+* using kotlin since 0.6 (first gadsu was completely rewritten!)
+
+
+$ cat **/*.kt | wc -l
+34884
+
+Lessons Learned
+
+* null handling
+* null handling
+* null handling
+* null handling
+* extension methods
+* null handling
+* null handling
+* null handling
+* properties
+* semicolon
+* arguments (named, default)
+
+
+NOT: * christoph zeigt schon backticks fuer methoden namen
+
+* with kotlin, get to used to have more (public) classes in one file => discipline!
+* explicit null handling!!!
+* extension methods! (interop with java is mau; empty companion object in kotlin)
+	- custom toXxx() methods: persistence, toMyImage()
+	- custom validation in: fun Persistable.ensurePersisted(), String.isValidMail()
+	-> lang.kt
+	- date parse/format/conversion (util/joda/sql/gcal)
+* extension properties
+	-> Appointment.Companion.ROW_MAPPER (stupid @unused)
+* more compact code
+	- due to functional nature
+	- local type inference
+	- properties
+	- ctor properties
+	- data class
+	- no more lombok necessary
+	=> sometimes leads to too compact code... discipline little padawan!
+* NO!!! christophs machts schon... default and named arguments (no more builder)
+	* no builder necessary anymore => copy constructor + named arguments
+* collection API
+* mandatory override
+* lazy get (show how it is done in java)
+
+
+GADSU FEATURES
+* how to build a swing UI with kotlin
+* guice eventbus
+* AopModule for logging
+* TcmProps
+* minors:
+	- highlight text in text editor
+	- textfields with suggestion
+* flyway java migration: V6_1__xprop_update
+* generate acupunct based on ODS
+* UI test with spec4j
+
+
 TODO
 * website polishen
 * URL auf meetup seite geben

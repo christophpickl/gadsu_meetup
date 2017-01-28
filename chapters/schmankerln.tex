@@ -3,18 +3,103 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}\frametitle{Extension Methods}
-\pause
+\begin{frame}[fragile] \frametitle{Extension Methods \#1}
+The \textit{neutral} \textbf{domain object}:
+\begin{lstlisting}
+package at.cpickl.gadsu.client
 
-usage of extension methods, e.g. unsavidValidInstance() in test scope, or custom toXxx() converter in DB scope
+data class Client(
+  val id: String,
+  val name: String
+)
+\end{lstlisting}
+\end{frame}
 
-BUT: requires empty companion object sometimes; also not possible for native java classes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Extension Methods \#2}
+\textbf{Persistence} specific functionality:
+\begin{lstlisting}
+package at.cpickl.gadsu.persistence
+
+data class ClientDbo(
+  val TXT_ID: String,
+  val TXT_NAME: String
+)|\pause|
+fun Client.toDbo() =
+        ClientDbo(id, name)
+|\pause|
+class ClientRepo {
+    fun save(client: Client) {
+        saveSomewhere(client.toDbo())
+    }
+}
+\end{lstlisting}
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}\frametitle{XProps}
+\begin{frame}[fragile] \frametitle{Extension Methods \#3}
+Add a fluent API to an existing classes:
+\begin{lstlisting}
+fun <T : JComponent> T.bold(): T {
+  font = font.deriveFont(Font.BOLD)
+  return this
+}
+|\pause|
+val myLabel = JLabel("text").bold()
+val myTextField = JTextField("text").bold()
+val myTextArea = JTextArea("text").bold()
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Extension Properties \#1}
+Possible replacement of common \textbf{test factories}:
+\begin{lstlisting}
+package at.cpickl.gadsu.test
+
+val Client.Companion.testee1: Client
+  get() = Client(
+    id = "",
+    name = "Max Muster"
+)
+\end{lstlisting}
 \pause
 
-XProp, CProp, SProp... grafik
+Requires to have some \textit{placeholder}:
+\begin{lstlisting}
+package at.cpickl.gadsu.client
+
+data class Client( ... ) {
+    companion object {}
+}
+\end{lstlisting}
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Extension Properties \#2}
+Use those testees in your \textbf{tests}:
+\begin{lstlisting}
+package at.cpickl.gadsu.test
+
+@Test class ClientIT {
+
+  @Inject lateinit var repo: ClientRepo
+  
+  fun `reference test scoped testee`() {
+    repo.save(
+      Client.testee1.copy(name = "Otto")
+    )
+    // ... assertions ... 
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+
+
+% functional stuff / lambdas
+
+% by
+% lazy
+

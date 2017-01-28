@@ -1,17 +1,42 @@
 
-\sektion{In the wild}
+\sektion{\includegraphics[height=0.6cm]{kotlin_logo_transparent}otlin in the wild}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{\texttt{build.gradle}}
+\begin{lstlisting}
+apply plugin: "kotlin"
+buildscript {
+  ext.kotlin_version = '1.0.6'
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+  }
+}
+dependencies {
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+}
+\end{lstlisting}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fullimageCapt{travis}{\href{https://travis-ci.org/christophpickl/gadsu}{travis-ci.org}}{10cm}
 
-\begin{frame}[fragile] \frametitle{Travis} 
-\pause
-\texttt{.travis.yml}:
-
+\begin{frame}[fragile] \frametitle{\texttt{.travis.yml}}
 \begin{lstlisting}
-language: kotlin
+language: kotlin|\pause|
+sudo: false|\pause|
+jdk:
+  - oraclejdk8|\pause|
+before_install:
+  - "chmod +x gradlew"|\pause|
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"|\pause|
+script:
+  - "./gradlew test ..."|\pause|
+notifications:
+  email:
+    - "MLtravis@gadsu.com"
 \end{lstlisting}
 \end{frame}
 
@@ -19,16 +44,30 @@ language: kotlin
 \fullimageCapt{codecov}{\href{https://codecov.io/gh/christophpickl/gadsu/}{codecov.io}}{10cm}
 
 \begin{frame}[fragile] \frametitle{Codecov} 
-\pause
 Gradle Configuration:
 
 \begin{lstlisting}
 plugins {
   id 'jacoco'
   id 'com.github.kt3k.coveralls'
-    version '2.7.1'
-}
+}|\pause|
+jacocoTestReport {
+  reports {
+    xml.enabled = true
+}}
 \end{lstlisting}
+\pause
+
+Travis Configuration:
+
+\begin{lstlisting}
+script:
+  - "./gradlew ... jacocoTestReport ..."|\pause|
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+\end{lstlisting}
+
+
 \end{frame}
 
 
@@ -36,7 +75,6 @@ plugins {
 \fullimageCapt{versioneye}{\href{https://www.versioneye.com/user/projects/572880644a0faa000b782062}{versioneye.com}}{10cm}
 
 \begin{frame}[fragile] \frametitle{Versioneye} 
-\pause
 Gradle Configuration:
 
 \begin{lstlisting}
@@ -45,6 +83,15 @@ plugins {
     version "1.4.0"
 }
 \end{lstlisting}
+\pause
+
+Travis Configuration:
+
+\begin{lstlisting}
+script:
+  - "./gradlew ... versioneye-update ..."
+\end{lstlisting}
+  
 \end{frame}
 
 
