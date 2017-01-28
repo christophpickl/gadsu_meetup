@@ -1,0 +1,55 @@
+package at.cpickl.gadsu.client
+
+import org.testng.annotations.Test
+import javax.inject.Inject
+import javax.swing.JTextField
+
+
+data class Client(
+        val id: String,
+        val name: String
+) {
+    companion object {}
+}
+
+data class ClientDbo(
+        val TXT_ID: String,
+        val TXT_NAME: String
+)
+
+fun Client.toDbo() =
+        ClientDbo(id, name)
+
+class ClientRepo {
+    fun save(client: Client) {
+//        saveSomewhere(client.toDbo())
+    }
+}
+
+val Client.Companion.testee1: Client get() = Client(
+        id = "",
+        name = "Max Muster"
+)
+
+@Test
+class ClientIT {
+
+    @Inject
+    private lateinit var clientRepo: ClientRepo
+
+    fun `given unsaved valid client instance`() {
+        clientRepo.save(Client.testee1.copy(name = "Anna Nym"))
+        // assertion
+    }
+}
+
+fun foo() {
+
+
+
+    val text = JTextField()
+    val width = text.width
+    
+
+
+}

@@ -39,7 +39,7 @@ class ClientRepo {
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{Extension Methods \#3}
-Add a fluent API to an existing classes:
+Add a \textbf{fluent API} to an existing classes:
 \begin{lstlisting}
 fun <T : JComponent> T.bold(): T {
   font = font.deriveFont(Font.BOLD)
@@ -66,7 +66,7 @@ val Client.Companion.testee1: Client
 \end{lstlisting}
 \pause
 
-Requires to have some \textit{placeholder}:
+Sadly requires to have some \textit{placeholder}:
 \begin{lstlisting}
 package at.cpickl.gadsu.client
 
@@ -97,9 +97,125 @@ package at.cpickl.gadsu.test
 \end{frame}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Function done right}
 
-% functional stuff / lambdas
+TODO TODO TODO TODO TODO TODO TODO 
 
-% by
-% lazy
+Java 8
+\begin{lstlisting}
+Collection, filter, map, STREAM!, collector
+\end{lstlisting}
+
+Kotlin (implicit \texttt{it} variable)
+\begin{lstlisting}
+Collection, filter, map
+\end{lstlisting}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullimageCapt{lazy}{Sometimes I feel so lazy \ldots}{8cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Lazy in Java}
+Given there is a \textit{very expensive} \texttt{expensiveInit()} method:
+\pause
+\begin{lstlisting}
+public class NaiveSingleton {
+  private Object lazyField = null;
+
+  public Object getLazyField() {
+    if (lazyField == null) {
+      lazyField = expensiveInit();
+    }
+    return lazyField;
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Lazy in Java8}
+\begin{lstlisting}
+public class Java8 {
+  private Supplier<Object> lazyField=() -> {
+    Object value = expensiveInit();
+    lazyField = () -> value;
+    return value;
+  };
+
+  public Object getLazyField() {
+    return lazyField.get();
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Lazy in Kotlin}
+\begin{lstlisting}
+class LazyKotlin {
+  val lazyField by lazy {
+    expensiveInit()
+  }
+}|\pause|
+
+// part of stdlib:
+fun <T> lazy(initializer: ()->T): Lazy<T> =
+  SynchronizedLazyImpl(initializer)
+\end{lstlisting}
+\pause
+Thanks to type inference, we don't need to specify types explicity.
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Class Delegation}
+Given the existing classes:
+\begin{lstlisting}
+interface Step {
+  fun take()
+}|\pause|
+
+class StepImpl : Step {
+  override fun take() {}
+}
+\end{lstlisting}
+\pause
+We now want some new service to implement this interface, \\
+but \textbf{delegate} all its methods to the \texttt{StepImpl} implementation.
+\end{frame}
+
+\begin{frame}[fragile] \frametitle{Reimplement in Java}
+\begin{lstlisting}
+public class MyService implements Step {
+
+  private final Step step;
+  
+  public MyService(Step step) {
+    this.step = step;
+  }
+  
+  @Override public void take() {
+    step.take();
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile] \frametitle{Delegate by Kotlin}
+\begin{lstlisting}
+class MyService(step: Step) : Step by step
+\end{lstlisting}
+\pause
+\vspace{0.5cm}
+Standard delegates in Kotlin:
+\begin{itemize}
+	\item lazy
+	\item observable
+	\item map properties
+\end{itemize}
+\end{frame}
 

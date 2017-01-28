@@ -74,9 +74,8 @@ after_success:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fullimageCapt{versioneye}{\href{https://www.versioneye.com/user/projects/572880644a0faa000b782062}{versioneye.com}}{10cm}
 
-\begin{frame}[fragile] \frametitle{Versioneye} 
+\begin{frame}[fragile] \frametitle{VersionEye} 
 Gradle Configuration:
-
 \begin{lstlisting}
 plugins {
   id "org.standardout.versioneye"
@@ -85,22 +84,43 @@ plugins {
 \end{lstlisting}
 \pause
 
+Gradle Properties:
+\begin{lstlisting}
+versioneye.projectid=572880644a0f...00b78206
+\end{lstlisting}
+\pause
+
+
 Travis Configuration:
 
 \begin{lstlisting}
 script:
   - "./gradlew ... versioneye-update ..."
 \end{lstlisting}
-  
+ 
 \end{frame}
 
+
+\begin{frame} \frametitle{VersionEye GitHub Integration} 
+
+\centering{Display coverage data via the \href{https://github.com/codecov/browser-extension}{Codecov Browser Extension}:}
+
+\begin{figure}[h]
+\centering
+  \includegraphics[width=10cm]{versioneye_github1}
+\end{figure}
+\begin{figure}[h]
+\centering
+  \includegraphics[width=10cm]{versioneye_github2}
+\end{figure}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{IntelliJ support is quite good}
 \begin{itemize}
 	\item Auto convert from Java to Kotlin
-	\item TODO2
+	\item False unused warning on companion extensions $:($
 	\item TODO3
 	\item Automatic replace
 \end{itemize}

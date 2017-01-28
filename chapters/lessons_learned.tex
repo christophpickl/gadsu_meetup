@@ -1,25 +1,6 @@
 
 \sektion{Lessons Learned}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Kotlin is a great language}
-\begin{itemize}
-	\item Null handling is a MUST!
-	\item Extension methods for better auto completion
-	\item Named and default arguments, data classes
-	\item Requires developers to be more disciplined
-	\begin{itemize}
-		\item Several classes in one (big) file gets common
-		\item Overuse of single-expression functions
-		\item Overuse of \texttt{apply\{\}}
-		\item Explicit type declaration for documentation
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Tooling infrastructure grows}
@@ -31,7 +12,73 @@
 \end{itemize}
 \end{frame}
 
-%* the "1-liner challenge": no references, just a = method
-%* overdoing it with apply (who is this?)
-%* data classes are restricted in usage => kotlin 1.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Kotlin is a great language}
+\begin{itemize}
+	\item Null handling is a MUST!
+	\item Extension methods (for better auto completion)
+	\item (Constructor) Properties
+	\item Lambdas done properly
+	\item (Local) Type inference
+	\item Named and default arguments
+	\item Compact syntax: No semicolon, new
+	\item Data classes
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Kotlin is a great language \ldots but!}
+\begin{itemize}
+	\item Data classes are still somehow restricted in their usage (v1.1)
+	\item Paradigm shift of final-by-default clashes with existing libs
+	\item Requires developers to be more disciplined
+	\begin{itemize}
+		\item Several classes in one (big) file gets common
+		\item Explicit type declaration for documentation
+		\item Overuse of single-expression functions
+		\item Overuse of functionals like \texttt{apply\{\}}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Apply -- Who is this?}
+\begin{lstlisting}
+class MainPanel : JPanel() {
+  init {
+    val subPanel = JPanel()
+    subPanel.background = Color.RED
+    add(subPanel)
+  }
+}
+\end{lstlisting}
+\pause
+We can refactor this to get rid of the \textbf{variable reference}.
+\end{frame}
+
+
+\begin{frame}[fragile] \frametitle{Apply -- This is not this anymore!}
+\begin{lstlisting}
+class MainPanel : JPanel() {
+  init {
+    JPanel().apply {
+      background = Color.RED
+      add(this)
+    }
+  }
+}
+\end{lstlisting}
+\pause
+\footnotesize{\texttt{\textcolor{red}{IllegalArgumentException: adding container's parent to itself}}}
+\pause
+\\
+\vspace{0.5cm}
+The solution is to use: \texttt{this\textcolor{someBlue}{@MainPanel}.add(this)}\pause \\
+But what happens if there are \textbf{two nested} \texttt{JPanel}s?!
+\end{frame}
+
+
 

@@ -1,125 +1,71 @@
 
-remind@me: mockito-kotlin, hamkrest
+TODO
 
-===> mehr fokus auf kotlin spezifika (weniger projekt generell krimskrams)
+!!! uebersicht: apply, let, with, ...
+!! neue libs anschauen: mockito-kotlin, hamkrest
+!! fun ClientDbo?.toDomain() = if(null) null else Client(TXT_ID, TXT_NAME)
 
-* intellij bookmarks verwenden fuer live herzeigen
+
+? google client secret preparen for mtest calendar (ueberhaupt herzeigen?)
+@ extension methods: MyImage.toReportRepresentation
+- website polishen
+- URL auf meetup seite geben
+=========================================
+
+>>>>>>>>>>>>>>>> ROADMAP GADSU DEMO <<<<<<<<<<<<<<<<
+
+* create new client
+	* enter name, select date
+	* enter note and highlight bold
+* create new treatment
+	* date, time
+	* select meridian
+	* add dyn treatments
+* GCal?
+* menu bar
+	* preferences
+	* bulk mail
+	* acupuncture; show Bl1 in textfield
+	* bericht protokoll erstellen
+	* PDFs speichern
+
+
+>>>>>>>>>>>>>>>> ROADMAP CODE DEMO <<<<<<<<<<<<<<<<
+
+* how to build a swing UI with kotlin
+* flyway java migration: V6_1__xprop_update
+* UI test with spec4j
+
+=========================================
+
+// mehr fokus auf kotlin spezifika (weniger projekt generell krimskrams)
+// intellij bookmarks verwenden fuer live herzeigen
 
 * using kotlin since 0.6 (first gadsu was completely rewritten!)
 
 
-$ cat **/*.kt | wc -l
-34884
-
 Lessons Learned
 
-* null handling
-* null handling
-* null handling
-* null handling
-* extension methods
-* null handling
-* null handling
-* null handling
-* properties
-* semicolon
-* arguments (named, default)
-
-
-NOT: * christoph zeigt schon backticks fuer methoden namen
-
-* with kotlin, get to used to have more (public) classes in one file => discipline!
-* explicit null handling!!!
 * extension methods! (interop with java is mau; empty companion object in kotlin)
 	- custom toXxx() methods: persistence, toMyImage()
 	- custom validation in: fun Persistable.ensurePersisted(), String.isValidMail()
 	-> lang.kt
 	- date parse/format/conversion (util/joda/sql/gcal)
-* extension properties
-	-> Appointment.Companion.ROW_MAPPER (stupid @unused)
+	- MyImage toXxxx converter
 * more compact code
 	- due to functional nature
-	- local type inference
-	- properties
-	- ctor properties
-	- data class
 	- no more lombok necessary
-	=> sometimes leads to too compact code... discipline little padawan!
-* NO!!! christophs machts schon... default and named arguments (no more builder)
-	* no builder necessary anymore => copy constructor + named arguments
 * collection API
-* mandatory override
-* lazy get (show how it is done in java)
 
 
 GADSU FEATURES
-* how to build a swing UI with kotlin
+
 * guice eventbus
 * AopModule for logging
 * TcmProps
 * minors:
 	- highlight text in text editor
 	- textfields with suggestion
-* flyway java migration: V6_1__xprop_update
+
 * generate acupunct based on ODS
-* UI test with spec4j
-
-
-TODO
-* website polishen
-* URL auf meetup seite geben
-
-
-
->>>>>>>>>>>>>>>> CONTENT <<<<<<<<<<<<<<<<
-
-ABOUT GADSU
-========================================================================
-* shiatsu tool
-	- manage clients, appointments, treatments, diagnosis
-	- protocol PDF generation
-	- google calender integration
-* roadmap
-	- TCM intelligency/software agent, recommender what to do
-	- statistics
-	- doodle integration
-	- invoices/billing (connect to finanzamt)
-* toolstack
-	- swing (RIP)
-	- guava
-	- spring jdbc
-	- hsqldb+flyway
-	- jasper
-	- freemarker
-
-
-MOST USED KOTLIN FEATURES
-========================================================================
-* data class
-* extension methods
-* compact functional (map, filter, apply)
-
-MINORS
-------------------------------------------------------------------------
-* convert setter methods to property access
-
-SCHMANKERLN
-========================================================================
-
-* Tool Infrastructure
-	- VersionEye
-	- Coverage (kotlin support)
-* Google APIs (GMail, Calendar)
-
-EXTENSION METHODS for test infrastructure
-------------------------------------------------------------------------
-* unsaved valid instance (in combination with )
-	- requires companion object, even when just empty :(
-
-
-LESSONS LEARNED
-========================================================================
-* common tools for coverage and static code analysis "eher mau" (coverage ok, syntax highlighting ko, checkstyle/pmd?)
-* data classes are restricted in usage
-* the "1-liner challenge": no references, just a = method
 
