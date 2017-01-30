@@ -4,36 +4,50 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Tooling infrastructure grows}
-\begin{itemize}
-	\item Mostly same as for Java
-	\item Build system support (gradle with kotlin coming!)
-	\item Static code analysis tools missing
-	\item Syntax highlighting mostly missing
+\begin{itemize}[<+->]
+	\item \textit{Mostly} as good as for Java
+	\item \textbf{IntelliJ} support feels already superb
+	\item \textbf{Build} system support (Gradle Script Kotlin!)
+	\item Static code analysis tools \textbf{missing}
+	\item Syntax highlighting mostly \textbf{missing}
 \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Kotlin is a great language}
-\begin{itemize}
-	\item Null handling is a MUST!
-	\item Extension methods (for better auto completion)
+\frametitle{8 reasons to use Kotlin}
+\begin{enumerate}
+	\item \textbf{Null handling} is a MUST!
+\end{enumerate}
+\vspace{4.1cm}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullimageCapt{nullpointer}{Remember me?!}{6cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{8 reasons to use Kotlin}
+\begin{enumerate}[<+->]
+	\item \textbf{Null handling} is a MUST!
+	\item \textbf{Extension methods} for improved auto completion
 	\item (Constructor) Properties
-	\item Lambdas done properly
-	\item (Local) Type inference
-	\item Named and default arguments
-	\item Compact syntax: No semicolon, new
-	\item Data classes
-\end{itemize}
+	\item \textbf{Lambdas} done properly
+	\item (Local) Type \textbf{inference}
+	\item Named and default \textbf{arguments}
+	\item Compact \textbf{syntax}: No semicolon, new
+	\item \textbf{Data} classes replaces Lombok
+\end{enumerate}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Kotlin is a great language \ldots but!}
+\frametitle{Kotlin is a great language \pause \ldots BUT! \pause}
 \begin{itemize}
-	\item Data classes are still somehow restricted in their usage (v1.1)
-	\item Paradigm shift of final-by-default clashes with existing libs
-	\item Requires developers to be more disciplined
+	\item \textbf{Data classes} are still somehow restricted in their usage (v1.1)
+	\item Paradigm shift of \textbf{final}-by-default clashes with existing libs
+	\item Requires young padawan to be more \textbf{disciplined}
 	\begin{itemize}
 		\item Several classes in one (big) file gets common
 		\item Explicit type declaration for documentation
@@ -56,7 +70,8 @@ class MainPanel : JPanel() {
 }
 \end{lstlisting}
 \pause
-We can refactor this to get rid of the \textbf{variable reference}.
+We can \textbf{refactor} this to get rid of the variable reference.
+\vspace{3.3cm}
 \end{frame}
 
 
@@ -74,7 +89,7 @@ class MainPanel : JPanel() {
 \pause
 \footnotesize{\texttt{\textcolor{red}{IllegalArgumentException: adding container's parent to itself}}}
 \pause
-\begin{itemize}
+\begin{itemize}[<+->]
 	\item The solution is to use: \texttt{this\textcolor{someBlue}{@MainPanel}.add(this)}
 	\item But what happens if there are \textbf{two nested} \texttt{JPanel}s?!
 	\item PS: Kotlin 1.1 will come with a new function called \texttt{also()}
@@ -86,6 +101,26 @@ JPanel().also {
 
 \end{itemize}
 \end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}\frametitle{11 Kotlin 1.1 News}
+\begin{enumerate}[<+->]
+	\item {Compiler plugins (open-by-default, no-arg ctor)}
+	\item {Coroutines}
+	\item Type aliases
+	\item Type inference for getters
+	\item Bound callable references
+	\item Local delegated properties \& Inline properties
+	\item Inheritance for data classes
+	\item Subclasses of sealed classes in the same file
+	\item Destructuring in lambdas
+	\item Underscore for unused parameters
+	\item Underscore in numeric literals
+\end{enumerate}
+\end{frame}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

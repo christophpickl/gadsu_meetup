@@ -3,13 +3,10 @@ TODO
 
 !!! mehr auf swing eingehen: was macht kotlin diesbzl besser
 	- bildchen mit koma patienten als intro ;)
-! fun ClientDbo?.toDomain() = if(null) null else Client(TXT_ID, TXT_NAME)
-@ extension methods: MyImage.toReportRepresentation
 ! statt hasProperty => x?.getSomething ?: otherwise
-- uebersicht: apply, let, with, ...
+
+
 - neue libs anschauen: mockito-kotlin, hamkrest
-
-
 -- website polishen
 -- URL auf meetup seite geben
 =========================================
@@ -28,8 +25,8 @@ TODO
 * GCal
 	* gcal creds und "gadsu_test" kalender eintragen
 	* neuen termin erstellen, und gcal zeigen
-	* in gcal neuen termin anlegen
-	* "GCal sync" ausfuehren
+	* in gcal neuen termin anlegen (string similarity!)
+	* "GCal sync" ausfuehren (string similarity!)
 * menu bar
 	* bulk mail
 	* acupuncture; show Bl1 in textfield
@@ -42,6 +39,9 @@ TODO
 	- fun JList.registerEnterPressed()
 	- fun JTextComponent.enforceMaxCharacters()
 	- fun simulationSaysLengthIsTooLong()
+* MyImage
+	- extension methods mit private classes
+	- Gender.defaultImage, compile safe when
 
 * how to build a swing UI with kotlin
 * flyway java migration: V6_1__xprop_update

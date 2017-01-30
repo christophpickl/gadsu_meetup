@@ -1,10 +1,13 @@
 
 \sektion{Code Schmankerln}
 
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fulltitle{Extension Methods}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile] \frametitle{Extension Methods \#1}
-The \textit{neutral} \textbf{domain object}:
+\begin{frame}[fragile] \frametitle{Domain Object}
+Implement a straight-forward, \textit{clean} \textbf{domain object}:
 \begin{lstlisting}
 package at.cpickl.gadsu.client
 
@@ -16,7 +19,7 @@ data class Client(
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile] \frametitle{Extension Methods \#2}
+\begin{frame}[fragile] \frametitle{Persistence Extensions}
 \textbf{Persistence} specific functionality:
 \begin{lstlisting}
 package at.cpickl.gadsu.persistence
@@ -36,9 +39,26 @@ class ClientRepo {
 \end{lstlisting}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Nullable Persistence Extensions}
+Or for those masochists out there who prefer \textbf{nullables}:
+\begin{lstlisting}
+package at.cpickl.gadsu.persistence
+
+fun Client?.toDbo() = 
+  if (this == null) null 
+  else ClientDbo(id, name)|\pause|
+
+val client: Client? = ....
+val dbo = client?.toDbo()
+  ?: ClientDbo.defaultInstance()
+\end{lstlisting}
+\end{frame}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile] \frametitle{Extension Methods \#3}
+\begin{frame}[fragile] \frametitle{Extend Swing Components}
 Add a \textbf{fluent API} to an existing classes:
 \begin{lstlisting}
 fun <T : JComponent> T.bold(): T {
@@ -54,8 +74,12 @@ val panel = JPanel().transparent()
 \end{lstlisting}
 \end{frame}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile] \frametitle{Extension Properties \#1}
+\fulltitle{Extension Properties}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Testee Properties}
 Possible replacement of common \textbf{test factories}:
 \begin{lstlisting}
 package at.cpickl.gadsu.test
@@ -68,7 +92,7 @@ val Client.Companion.testee1: Client
 \end{lstlisting}
 \pause
 
-Sadly requires to have some \textit{placeholder}:
+Unfortunately Kotlin requires to have some \textit{placeholder}:
 \begin{lstlisting}
 package at.cpickl.gadsu.client
 
@@ -79,7 +103,7 @@ data class Client( ... ) {
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile] \frametitle{Extension Properties \#2}
+\begin{frame}[fragile] \frametitle{Integration Testee}
 Use those testees in your \textbf{tests}:
 \begin{lstlisting}
 package at.cpickl.gadsu.test
@@ -98,21 +122,44 @@ package at.cpickl.gadsu.test
 \end{lstlisting}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fulltitle{$\lambda$}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile] \frametitle{Function done right}
-
-TODO TODO TODO TODO TODO TODO TODO 
-
-Java 8
+\begin{frame}[fragile] \frametitle{Functional done right!}
+Java 8 being veeery verbose as always:
 \begin{lstlisting}
-Collection, filter, map, STREAM!, collector
+List<Integer> numbers = asList(1, 2, 3);
+List<String> numbers2 = numbers
+  .stream()
+  .filter(i -> i % 2 == 0)
+  .map(Object::toString)
+  .collect(toList());
 \end{lstlisting}
 
 Kotlin (implicit \texttt{it} variable)
 \begin{lstlisting}
-Collection, filter, map
+val numbers = listOf(1, 2, 3)
+val numbers2 = numbers
+  .filter { it % 2 == 0 }
+  .map(Int::toString)
 \end{lstlisting}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullimageCapt{aunt_chatty}{Java sometimes behaves like good old \textit{Aunt Chatty}.}{5cm}
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Kotlin Basic Functionals?!}
+\begin{itemize}
+	\setlength\itemsep{1.5em}
+	\item \texttt{fun <T, R> T.\textBlue{let}(f: (T) -> R): R = \\ f(this)}
+	\item \texttt{fun <T> T.\textBlue{apply}(f: T.() -> Unit): T \\ \{ f(); return this \}}
+	\item \texttt{fun <T, R> \textBlue{with}(receiver: T, f: T.() -> R): R = \\ receiver.f()}
+	\item \texttt{fun <T, R> T.\textBlue{run}(f: T.() -> R): R = \\ f()}
+\end{itemize}
 \end{frame}
 
 
@@ -173,6 +220,9 @@ Thanks to type inference, we don't need to specify types explicity.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fulltitle{Delegates}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{Class Delegation}
 Given the existing classes:
 \begin{lstlisting}
@@ -215,9 +265,56 @@ class MyService(step: Step) : Step by step
 \vspace{0.5cm}
 Standard delegates in Kotlin:
 \begin{itemize}
-	\item lazy
+	\item \textbf{lazy}
 	\item observable
 	\item map properties
 \end{itemize}
 \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullimageCapt{swing}{\Large{Let's do some Swing!}}{8cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Common Swing Component}
+\begin{lstlisting}
+class ClientTabMain(modifications, ...) {|\pause|
+  val fields = Fields<Client>(modifications)|\pause|
+  val inpNote = fields
+    .newTextArea("Notiz", { it.note }, ViewNames.Client.InputNote, bus)|\pause|
+  init {
+    add(VFillFormPanel().apply {
+      addFormInput(inpNote)
+    })}|\pause|
+  fun isModified(client: Client) = 
+    fields.isAnyModified(client)|\pause|
+  fun updateFields(client: Client) {
+    fields.updateAll(client)
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Spec4J UI Test}
+\begin{lstlisting}
+@Test(groups = arrayOf("uiTest"))
+class ClientUiTest : UiTest() {
+ fun `save client should change UI`() {|\pause|
+  val client = Client.unsavedValidInstance()|\pause|
+  with(driver) {|\pause|
+   assertSaveButtonTextEquals("Neu anlegen")|\pause|
+
+   saveClient(client)
+   assertSaveButtonTextEquals("Speichern")|\pause|
+
+   assertListContains(client)
+   assertListSelected(client)
+   ...
+\end{lstlisting}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fulltitle{Let's see some code \ldots}
 

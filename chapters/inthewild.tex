@@ -5,13 +5,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{\texttt{build.gradle}}
 \begin{lstlisting}
-apply plugin: "kotlin"
+apply plugin: "kotlin"|\pause|
 buildscript {
   ext.kotlin_version = '1.0.6'
   dependencies {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
   }
-}
+}|\pause|
 dependencies {
   compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
@@ -114,20 +114,3 @@ script:
   \includegraphics[width=10cm]{versioneye_github2}
 \end{figure}
 \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{IntelliJ support is quite good}
-\begin{itemize}
-	\item Auto convert from Java to Kotlin
-	\item False unused warning on companion extensions $:($
-	\item TODO3
-	\item Automatic replace
-\end{itemize}
-\begin{figure}[h]
-\centering
-  \includegraphics[width=10cm]{intellij_properties}
-\end{figure}
-
-\end{frame}
-
