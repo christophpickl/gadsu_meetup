@@ -3,6 +3,8 @@ TODO
 
 !!! uebersicht: apply, let, with, ...
 !! neue libs anschauen: mockito-kotlin, hamkrest
+!! mehr auf swing eingehen: was macht kotlin diesbzl besser
+	- bildchen mit koma patienten als intro ;)
 !! fun ClientDbo?.toDomain() = if(null) null else Client(TXT_ID, TXT_NAME)
 
 
