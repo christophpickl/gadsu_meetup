@@ -1,17 +1,17 @@
 
 TODO
 
-!!! uebersicht: apply, let, with, ...
-!! neue libs anschauen: mockito-kotlin, hamkrest
-!! mehr auf swing eingehen: was macht kotlin diesbzl besser
+!!! mehr auf swing eingehen: was macht kotlin diesbzl besser
 	- bildchen mit koma patienten als intro ;)
-!! fun ClientDbo?.toDomain() = if(null) null else Client(TXT_ID, TXT_NAME)
-
-
-? google client secret preparen for mtest calendar (ueberhaupt herzeigen?)
+! fun ClientDbo?.toDomain() = if(null) null else Client(TXT_ID, TXT_NAME)
 @ extension methods: MyImage.toReportRepresentation
-- website polishen
-- URL auf meetup seite geben
+! statt hasProperty => x?.getSomething ?: otherwise
+- uebersicht: apply, let, with, ...
+- neue libs anschauen: mockito-kotlin, hamkrest
+
+
+-- website polishen
+-- URL auf meetup seite geben
 =========================================
 
 >>>>>>>>>>>>>>>> ROADMAP GADSU DEMO <<<<<<<<<<<<<<<<
@@ -23,16 +23,25 @@ TODO
 	* date, time
 	* select meridian
 	* add dyn treatments
-* GCal?
+* behandlungsziel: preferences, new treatment
+* protokoll, sammelprotokoll (reset of behandlungsziel)
+* GCal
+	* gcal creds und "gadsu_test" kalender eintragen
+	* neuen termin erstellen, und gcal zeigen
+	* in gcal neuen termin anlegen
+	* "GCal sync" ausfuehren
 * menu bar
-	* preferences
 	* bulk mail
 	* acupuncture; show Bl1 in textfield
-	* bericht protokoll erstellen
 	* PDFs speichern
 
 
 >>>>>>>>>>>>>>>> ROADMAP CODE DEMO <<<<<<<<<<<<<<<<
+
+* enhance swing components:
+	- fun JList.registerEnterPressed()
+	- fun JTextComponent.enforceMaxCharacters()
+	- fun simulationSaysLengthIsTooLong()
 
 * how to build a swing UI with kotlin
 * flyway java migration: V6_1__xprop_update

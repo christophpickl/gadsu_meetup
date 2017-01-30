@@ -46,9 +46,11 @@ fun <T : JComponent> T.bold(): T {
   return this
 }
 |\pause|
-val myLabel = JLabel("text").bold()
+val myLabel = JLabel("text").bold().italic()
 val myTextField = JTextField("text").bold()
 val myTextArea = JTextArea("text").bold()
+
+val panel = JPanel().transparent()
 \end{lstlisting}
 \end{frame}
 

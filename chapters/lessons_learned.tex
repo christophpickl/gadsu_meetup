@@ -74,10 +74,17 @@ class MainPanel : JPanel() {
 \pause
 \footnotesize{\texttt{\textcolor{red}{IllegalArgumentException: adding container's parent to itself}}}
 \pause
-\\
-\vspace{0.5cm}
-The solution is to use: \texttt{this\textcolor{someBlue}{@MainPanel}.add(this)}\pause \\
-But what happens if there are \textbf{two nested} \texttt{JPanel}s?!
+\begin{itemize}
+	\item The solution is to use: \texttt{this\textcolor{someBlue}{@MainPanel}.add(this)}
+	\item But what happens if there are \textbf{two nested} \texttt{JPanel}s?!
+	\item PS: Kotlin 1.1 will come with a new function called \texttt{also()}
+\begin{lstlisting}
+JPanel().also {
+  this.add(it)
+}
+\end{lstlisting}
+
+\end{itemize}
 \end{frame}
 
 
