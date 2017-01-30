@@ -4,7 +4,7 @@ TODO
 !!! mehr auf swing eingehen: was macht kotlin diesbzl besser
 	- bildchen mit koma patienten als intro ;)
 ! statt hasProperty => x?.getSomething ?: otherwise
-
+! UISpec4J
 
 - neue libs anschauen: mockito-kotlin, hamkrest
 -- website polishen
@@ -35,6 +35,8 @@ TODO
 
 >>>>>>>>>>>>>>>> ROADMAP CODE DEMO <<<<<<<<<<<<<<<<
 
+* Swing UI: ClientTabMain
+	- ClientUiTest # saveClient_sunshine
 * enhance swing components:
 	- fun JList.registerEnterPressed()
 	- fun JTextComponent.enforceMaxCharacters()
@@ -42,10 +44,11 @@ TODO
 * MyImage
 	- extension methods mit private classes
 	- Gender.defaultImage, compile safe when
+* FLyway migration: V6_1__xprop_update
+* fun LOG(javaClass: Class<Any>): Logger
+* buildMac/buildWin
+* ODS generator
 
-* how to build a swing UI with kotlin
-* flyway java migration: V6_1__xprop_update
-* UI test with spec4j
 
 =========================================
 
