@@ -3,6 +3,53 @@
 
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fulltitle{Null Handling}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Trust no one!}
+\begin{lstlisting}
+@Data
+class Contact {
+    String mail;
+}|\pause|
+@Data
+class Client {
+  Contact contact;
+  public boolean hasContact() {
+    return contact != null;
+  }
+}|\pause|
+
+if (client.hasContact()) {
+  process(client.getContact());
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Explicit handling in Kotlin}
+\begin{lstlisting}
+data class Contact(val mail: String)|\pause|
+data class Client(val contact: Contact?)|\pause|
+
+client.contact.ifNotNull(::process)|\pause|
+client.contact?.mail ?: "default@mail.at"
+\end{lstlisting}
+\pause
+Write your own, custom \textit{if-loop}:
+\begin{lstlisting}
+fun <T> T?.ifNotNull(action: (T) -> Unit): 
+  T? {
+  if (this == null) {
+    return null
+  }
+  action(this)
+  return this
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fulltitle{Extension Methods}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -280,8 +327,9 @@ Standard delegates in Kotlin:
 \begin{lstlisting}
 class ClientTabMain(modifications, ...) {|\pause|
   val fields = Fields<Client>(modifications)|\pause|
-  val inpNote = fields
-    .newTextArea("Notiz", { it.note }, ViewNames.Client.InputNote, bus)|\pause|
+  val inpNote = fields.newTextArea(
+    "Notiz", { it.note },
+    ViewNames.Client.InputNote, bus)|\pause|
   init {
     add(VFillFormPanel().apply {
       addFormInput(inpNote)
@@ -302,7 +350,8 @@ Dispatch events via \texttt{EventBus} and subscribe in Controller:
 open class ClientViewController |\pause|@Inject
   constructor(val bus: EventBus, ...) {|\pause|
      
-  @Subscribe open fun onAppStartupEvent(event: AppStartupEvent) {|\pause|
+  @Subscribe open fun onAppStartupEvent(
+    event: AppStartupEvent) {|\pause|
     reinitClients()
     bus.post(ChangeMainContentEvent(view))
      ...

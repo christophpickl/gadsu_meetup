@@ -5,7 +5,13 @@ TODO
 ** leute auffordern Di4 zu druecken
 ** sushi: veggy, sashimi, sashimi salat fuer michi
 
+- ad extension methods:
+	- solve problem of "delocalisation" (ClientUtil, ClientPersistenceUtil, ClientTestUtil, ...)
+	- date parse/format/conversion (util/joda/sql/gcal)
+	- custom validation in: fun Persistable.ensurePersisted(), String.isValidMail()
 ! statt hasProperty => x?.getSomething ?: otherwise
+- lombok showed the path, kotlin did it ;)
+* i dont like checked exceptions (usually)
 
 - neue libs anschauen: mockito-kotlin, hamkrest
 -- website polishen
@@ -56,35 +62,4 @@ TODO
 
 
 =========================================
-
-// mehr fokus auf kotlin spezifika (weniger projekt generell krimskrams)
-// intellij bookmarks verwenden fuer live herzeigen
-
-* using kotlin since 0.6 (first gadsu was completely rewritten!)
-
-
-Lessons Learned
-
-* extension methods! (interop with java is mau; empty companion object in kotlin)
-	- custom toXxx() methods: persistence, toMyImage()
-	- custom validation in: fun Persistable.ensurePersisted(), String.isValidMail()
-	-> lang.kt
-	- date parse/format/conversion (util/joda/sql/gcal)
-	- MyImage toXxxx converter
-* more compact code
-	- due to functional nature
-	- no more lombok necessary
-* collection API
-
-
-GADSU FEATURES
-
-* guice eventbus
-* AopModule for logging
-* TcmProps
-* minors:
-	- highlight text in text editor
-	- textfields with suggestion
-
-* generate acupunct based on ODS
 
