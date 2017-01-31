@@ -273,7 +273,7 @@ Standard delegates in Kotlin:
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fullimageCapt{swing}{\Large{Let's do some Swing!}}{8cm}
+\fullimageCapt{swing}{\Large{Let's do the Swing!}}{8cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{Common Swing Component}
@@ -296,6 +296,20 @@ class ClientTabMain(modifications, ...) {|\pause|
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Event Driven Swing}
+Dispatch events via \texttt{EventBus} and subscribe in Controller:
+\begin{lstlisting}
+open class ClientViewController |\pause|@Inject
+  constructor(val bus: EventBus, ...) {|\pause|
+     
+  @Subscribe open fun onAppStartupEvent(event: AppStartupEvent) {|\pause|
+    reinitClients()
+    bus.post(ChangeMainContentEvent(view))
+     ...
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{Spec4J UI Test}
 \begin{lstlisting}
 @Test(groups = arrayOf("uiTest"))
@@ -313,6 +327,30 @@ class ClientUiTest : UiTest() {
    ...
 \end{lstlisting}
 \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{Spec4J UI Driver}
+\begin{lstlisting}
+class ClientDriver(
+  test: UiTest, window: Window) {|\pause|
+  
+  val list = window.getListBox(
+    ViewNames.Client.List)!!
+  val createButton = window.getButton(
+    ViewNames.Client.CreateButton)!!|\pause|
+    
+  fun assertNoChangesDetected() {
+    test.assertThat(
+      test.not(saveButton.isEnabled))
+    test.assertThat(
+      test.not(cancelButton.isEnabled))
+  }
+  ...
+\end{lstlisting}
+\end{frame}
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

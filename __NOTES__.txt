@@ -1,10 +1,11 @@
 
 TODO
 
-!!! mehr auf swing eingehen: was macht kotlin diesbzl besser
-	- bildchen mit koma patienten als intro ;)
+** taiji zeigen?
+** leute auffordern Di4 zu druecken
+** sushi: veggy, sashimi, sashimi salat fuer michi
+
 ! statt hasProperty => x?.getSomething ?: otherwise
-! UISpec4J
 
 - neue libs anschauen: mockito-kotlin, hamkrest
 -- website polishen
@@ -36,6 +37,9 @@ TODO
 >>>>>>>>>>>>>>>> ROADMAP CODE DEMO <<<<<<<<<<<<<<<<
 
 * Swing UI: ClientTabMain
+	- class ClientView, SwingClientDetailView, EventButton, ClientViewController
+	=> @Subscribe template
+	=> missing Data class extension for Events
 	- ClientUiTest # saveClient_sunshine
 * enhance swing components:
 	- fun JList.registerEnterPressed()
@@ -44,7 +48,8 @@ TODO
 * MyImage
 	- extension methods mit private classes
 	- Gender.defaultImage, compile safe when
-* FLyway migration: V6_1__xprop_update
+* BusRegisteringTypeListener
+* Flyway migration: V6_1__xprop_update
 * fun LOG(javaClass: Class<Any>): Logger
 * buildMac/buildWin
 * ODS generator
