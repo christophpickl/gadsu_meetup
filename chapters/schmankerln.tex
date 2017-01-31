@@ -97,7 +97,7 @@ fun Client?.toDbo() =
   else ClientDbo(id, name)|\pause|
 
 val client: Client? = ....
-val dbo = client?.toDbo()
+val dbo = client.toDbo()
   ?: ClientDbo.defaultInstance()
 \end{lstlisting}
 \end{frame}
@@ -403,5 +403,5 @@ class ClientDriver(
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fulltitle{Let's see some code \ldots}
+%\fulltitle{Let's see some code \ldots}
 
